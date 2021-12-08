@@ -1,60 +1,68 @@
 // SIMULADOR ESCUELA INGLÉS
 
-// variables globales
-// estos son los valores con los que trabajarán funciones.
-
-let nivel3 = "avanzado";
-let costo3 = 3000;
-
-let nivel2 = "intermedio";
-let costo2 = 2000;
-
-let nivel1 = "principiante";
-let costo1 = 1000;
-
-let descuento = 0.8;
-let correo = "";
-
-// INICIO DE PROGRAMA:
-
 alert("BIENVENIDO A SIMULADOR ESCUELA INGLÉS");
 alert("Aquí encontrás cursos de todos los niveles del idioma");
 
+// variables globales
+
+let correo = "";
+
+// constructor notation: template cuando hay muchos objetos parecidos
+function Curso(nivel, costo, descuento) {
+  (this.nivel = nivel),
+    (this.costo = costo),
+    (this.descuento = descuento),
+    (this.calculaDescuento = function () {
+      return this.costo * this.descuento;
+    });
+}
+
+// cursos disponibles: instancias del objeto Curso:
+
+const curso1 = new Curso("principiante", 1000, 0.9);
+const curso2 = new Curso("intermedio", 2000, 0.8);
+const curso3 = new Curso("avanzado", 3000, 0.7);
+
+// INICIO DE PROGRAMA:
+
 // ESCRIBIR PRIMERO Funciones globales. i.e,  cálculos que en todos los casos se van a ejecutar.
 
-// 1. FUNCIÓN QUE SOLO INFORMA
-
-function informaPrecioyNivel(nivel, costo) {
-  //función informativa que tmb sete el correo
+                      // 1. FUNCIÓN QUE SOLO INFORMA
+function informa(nivel, costo) {
   alert("su curso es " + nivel);
   alert("el precio de nivel " + nivel + " es " + costo + ".00");
   correo = prompt("escriba su correo para comenzar proceso de incripción");
 }
 
-// 2. FUNCIÓN QUE CALCULA PRECIO SEGÚN SI USUARIO ES ESTUDIANTE :
+                      // 2. FUNCIÓN QUE CALCULA PRECIO SEGÚN SI USUARIO ES ESTUDIANTE :
 
-function calcularPrecioTotal(costo, descuento) {
+function calcularPrecioTotal(curso, costo) {
   let esEstudiante = prompt("Eres estudiante? si / no");
 
-  // SI USUARIO ES ESTUDIANTE:
-  if (esEstudiante == "si") {
-    alert("tu costo será 20% menos :)");
-    let descuentoCalculado = costo * descuento;
 
-    let pagoDescuento = prompt("ingrese la cantidad de " + descuentoCalculado);
+  // PRECIO SI USUARIO ES ESTUDIANTE:******************************************************************
+
+  if (esEstudiante == "si") {
+    alert("tu pago TENDRÁ DESCUENTO :)");
+
+    const precioConDescuento = curso.calculaDescuento();
+
+    let pagoDescuento = prompt("ingrese la cantidad de " + precioConDescuento);
 
     //validación de pago para estudiantes:
 
-    while (pagoDescuento != descuentoCalculado) {
+    while (pagoDescuento != precioConDescuento) {
       alert("revisa que la cantidad sea exacta");
       pagoDescuento = prompt(
-        "ingresa cantidad de " + descuentoCalculado + " correctamente"
+        "ingresa cantidad de " + precioConDescuento + " correctamente"
       );
     }
-    alert("Felicidades. Se ha inscrito con éxito");
-    alert("Enviaremos un corre a: " + correo + " con tu recibo.");
+    // mensaje  ÉXITO usuario con descuento: 
 
-    // SI USUARIO NO ES ESTUDIANTE:
+    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con tu recibo.");
+    
+    // PRECIO SI USUARIO NO ES ESTUDIANTE:***************************************************************
+
   } else if (esEstudiante == "no") {
     alert("su pago es de " + costo);
 
@@ -67,8 +75,9 @@ function calcularPrecioTotal(costo, descuento) {
       alert("Revisa que la cantidad sea exacta");
       pagoNormal = prompt("ingresa cantidad de " + costo + " correctamente");
     }
-    alert("Felicidades. Se ha inscrito con éxito");
-    alert("Enviaremos un corre a: " + correo + " con tu recibo.");
+
+    // mensaje  ÉXITO usuario sin descuento: 
+    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con tu recibo.");
   }
 
   // SI USUARIO NO INGRESA VALOR VÁLIDO SI/NO
@@ -84,17 +93,15 @@ function compraUsuario() {
     "Escribe el nivel que quieres tomar: avanzado / intermedio / principiante "
   );
 
-  if (curso == nivel3) {
-    //llamados a funciones globales:
-
-    informaPrecioyNivel(nivel3, costo3);
-    calcularPrecioTotal(costo3, descuento);
-  } else if (curso == nivel2) {
-    informaPrecioyNivel(nivel2, costo2);
-    calcularPrecioTotal(costo2, descuento);
-  } else if (curso == nivel1) {
-    informaPrecioyNivel(nivel1, costo1);
-    calcularPrecioTotal(costo1, descuento);
+  if (curso == curso3.nivel) {
+    informa(curso3.nivel, curso3.costo);
+    calcularPrecioTotal(curso3, curso3.costo);
+  } else if (curso == curso2.nivel) {
+    informa(curso2.nivel, curso2.costo);
+    calcularPrecioTotal(curso1, curso2.costo);
+  } else if (curso == curso1.nivel) {
+    informa(curso1.nivel, curso1.costo);
+    calcularPrecioTotal(curso1, curso1.costo);
   } else {
     alert("sorry. no tenemos ese nivel");
     return;
@@ -104,17 +111,3 @@ function compraUsuario() {
 //LLAMADO PARA LA EJECUCIÓN DEL PROGRAMA:
 
 compraUsuario();
-
-
-
-//PARA ACTUALIZAR EL REPOSITORIO  QUE SE TIENE EN FORMA LOCAL : 
-
-//git add . 
-// git commit -m "actualización del proyecto"
-//git remote add origin https://github.com/dmontcqs/simuladorCompras.git
-// fatal renoto ya exisye 
-// git branch -M main 
-// git push -u origin main 
-//username for github:
-//contraseña: 
-//comienza a comprimir....
