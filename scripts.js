@@ -7,47 +7,80 @@ alert("Aquí encontrás cursos de todos los niveles del idioma");
 
 let correo = "";
 
-// constructor notation: template cuando hay muchos objetos parecidos
-function Curso(nivel, costo, descuento) {
-  (this.nivel = nivel),
-    (this.costo = costo),
-    (this.descuento = descuento),
-    (this.calculaDescuento = function () {
-      return this.costo * this.descuento;
-    });
-}
+// OBJETO constructor, CONSTRUCTOR notation: template cuando hay muchos objetos parecidos. 
 
-// cursos disponibles: instancias del objeto Curso:
+// function Curso(nivel, costo, descuento) {
+//   this.nivel = nivel,
+//   this.cost = costo,
+//   this.descuento = descuento,
+//     (this.calculaDescuento = function () {
+//       return this.costo * this.descuento;
+//     });
+// }
 
-const curso1 = new Curso("principiante", 1000, 0.9);
-const curso2 = new Curso("intermedio", 2000, 0.8);
-const curso3 = new Curso("avanzado", 3000, 0.7);
 
-// INICIO DE PROGRAMA:
+// INSTANCIAS DE OBJETO curso que eran contruidas con objeto constructor. 
+// const curso1 = new Curso("principiante", 1000, 0.9);
+// const curso2 = new Curso("intermedio", 2000, 0.8);
+// const curso3 = new Curso("avanzado", 3000, 0.7);
+
+
+// ARRAY de objetos. 
+
+const cursos = [
+  {
+    "index": 1,
+    "nivel": "principiante",
+    "costo": 1000,
+    "descuento": .9,
+  },
+  {
+    "index": 2,
+    "nivel": "intermedio",
+    "costo": 2000,
+    "descuento": .8,
+  },
+
+]
+
+cursos.push({
+  "index": 3,
+  "nivel": "avanzado",
+  "costo": 3000,
+  "descuento": .7,
+})
 
 // ESCRIBIR PRIMERO Funciones globales. i.e,  cálculos que en todos los casos se van a ejecutar.
 
-                      // 1. FUNCIÓN QUE SOLO INFORMA
+//  FUNCIÓN QUE SOLO INFORMA
 function informa(nivel, costo) {
   alert("su curso es " + nivel);
   alert("el precio de nivel " + nivel + " es " + costo + ".00");
   correo = prompt("escriba su correo para comenzar proceso de incripción");
 }
 
-                      // 2. FUNCIÓN QUE CALCULA PRECIO SEGÚN SI USUARIO ES ESTUDIANTE :
+//funcion que solo calcula descuento
 
-function calcularPrecioTotal(curso, costo) {
+function calculaDescuento(costo, descuento){
+  return costo * descuento
+}
+
+
+// 2. FUNCIÓN PRINCIPAL QUE CALCULA PRECIO SEGÚN SI USUARIO ES ESTUDIANTE :
+
+function calcularPrecioTotal(costo, descuento) {
   let esEstudiante = prompt("Eres estudiante? si / no");
 
 
-  // PRECIO SI USUARIO ES ESTUDIANTE:******************************************************************
+  // PRECIO SI USUARIO ES ESTUDIANTE:*************
 
   if (esEstudiante == "si") {
-    alert("tu pago TENDRÁ DESCUENTO :)");
 
-    const precioConDescuento = curso.calculaDescuento();
+    alert("tu pago TENDRÁ DESCUENTO :)"); 
 
-    let pagoDescuento = prompt("ingrese la cantidad de " + precioConDescuento);
+    const precioConDescuento = calculaDescuento(costo, descuento); //AQUI SE QUEDA !!! TypeError: curso.calculaDescuento is not a function
+
+    let pagoDescuento = prompt("ingrese la cantidad de " + precioConDescuento); 
 
     //validación de pago para estudiantes:
 
@@ -59,9 +92,9 @@ function calcularPrecioTotal(curso, costo) {
     }
     // mensaje  ÉXITO usuario con descuento: 
 
-    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con tu recibo.");
+    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con los pasos a seguir.");
     
-    // PRECIO SI USUARIO NO ES ESTUDIANTE:***************************************************************
+    // PRECIO SI USUARIO NO ES ESTUDIANTE:*********************
 
   } else if (esEstudiante == "no") {
     alert("su pago es de " + costo);
@@ -77,7 +110,7 @@ function calcularPrecioTotal(curso, costo) {
     }
 
     // mensaje  ÉXITO usuario sin descuento: 
-    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con tu recibo.");
+    alert("Felicidades. Se ha inscrito con éxito. Enviaremos un corre a: " + correo + " con los pasos a seguir.");
   }
 
   // SI USUARIO NO INGRESA VALOR VÁLIDO SI/NO
@@ -86,22 +119,32 @@ function calcularPrecioTotal(curso, costo) {
   }
 }
 
-//EJECUCIÓN DEL PROGRAMA
+//inicio PROGRAMA
 
 function compraUsuario() {
   let curso = prompt(
     "Escribe el nivel que quieres tomar: avanzado / intermedio / principiante "
   );
 
-  if (curso == curso3.nivel) {
-    informa(curso3.nivel, curso3.costo);
-    calcularPrecioTotal(curso3, curso3.costo);
-  } else if (curso == curso2.nivel) {
-    informa(curso2.nivel, curso2.costo);
-    calcularPrecioTotal(curso1, curso2.costo);
-  } else if (curso == curso1.nivel) {
-    informa(curso1.nivel, curso1.costo);
-    calcularPrecioTotal(curso1, curso1.costo);
+  // curso avanzado 
+
+  if (curso == cursos[2].nivel) {
+    informa(cursos[2].nivel, cursos[2].costo);
+
+    calcularPrecioTotal(cursos[2].costo, cursos[2].descuento);
+
+  //curso intermedio 
+
+  } else if (curso == cursos[1].nivel) {
+    informa(cursos[1].nivel, cursos[1].costo);
+    calcularPrecioTotal(cursos[1].costo, cursos[1].descuento);
+  
+    //curso principiante 
+
+  } else if (curso == cursos[0].nivel) {
+    informa(cursos[0].nivel, cursos[0].costo);
+    calcularPrecioTotal(cursos[0].costo, cursos[0].descuento);
+  // otro
   } else {
     alert("sorry. no tenemos ese nivel");
     return;
