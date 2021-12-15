@@ -1,6 +1,6 @@
-// SIMULADOR ESCUELA INGLÉS
+// SIMULADOR ESCUELA PORTUGUËS
 
-alert("BIENVENIDO A SIMULADOR ESCUELA INGLÉS");
+alert("BIENVENIDO A SIMULADOR ESCUELA DE RUSO");
 alert("Aquí encontrás cursos de todos los niveles del idioma");
 
 // variables globales
