@@ -1,31 +1,110 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <!-- aquí linkeo con CSS -->
-    <link rel="stylesheet" href="./css/styles.css">
+    <link rel="stylesheet" href="./css/styles.css" />
     <title>Escuela de Ruso</title>
-</head>
-<body>
-    <div class="grid-container" >
+  </head>
+  <body>
+    <div class="grid-container">
+      <header class="header"></header>
 
-        <header class="header">
-            <h1>SIMULADOR ESCUELA DE RUSO</h1>
-        </header>
+      <div class="image-box">
+        <h1 class="h1">
+          SIMULADOR ESCUELA DE RUSO <br />
+          Encontrá todos los niveles
+        </h1>
+      </div>
 
-        <div class="image-box"></div>
-        
-        <div class="left-box"></div>
-        <div class="center-box"></div>
-        <div class= "right-box"></div>
+      <!-- primera caja -->
 
-        <footer class="footer"></footer>
+      <div class="left-box">
+        <form class="formulario" name="formulario" action="#">
+            <fieldset>
+              <legend>INSCRIBETE AHORA</legend>
+              <!-- input de NOMBRE  -->
+              <div>
+                <label>Escribe TU NOMBRE</label>
+                <br />
+                <br />
+                <input
+                  id="nombre"
+                  type="text"
+                  name="nombre"
+                  placeholder="nombre"
+                  required="required"
+                />
+              </div>
+  
+              <br />
+  
+              <!-- input curso -->
+              <div>
+                <label>Escribe el nivel que quieras tomar</label>
+                <br />
+                <br />
+                <input
+                  id="curso"
+                  type="text"
+                  name="curso"
+                  placeholder="nivel"
+                  required="required"
+                />
+              </div>
+              <br/>
+  
+              <!-- segundo input -->
+              <div>
+                <label for="correo"> Escribe tu correo </label>
+                <br />
+                <br />
+                <input id="correo" type="email" required="required" placeholder="correo" />
+              </div>
+              <br />
+  
+              <!--  INPUT estudiante?  -->
+  
+              <div>
+                <label for="correo"> ¿Eres estudiante? </label>
+                <br />
+                <br />
+                <input
+                  id="respuestaEstudiante"
+                  placeholder="si/no"
+                  required="required"
+                  type="text"
+                />
+              </div>
+              <br />
+            </fieldset>
+          </form>
+          <input type="submit" value="guardaInfo" id="imprimeInfo">
+      </div>
+
+      <!-- segunda caja  -->
+      <div class="center-box">
+        <!-- aqui se renderea array de cursos desde JS -->
+        <div id="infoCursos">
+          <h3>CURSOS</h3>
+          <br />
+        </div>
+      </div>
+
+      <!-- TERCERA CAJA con formulario -->
+
+      <div class="right-box">
+        <div id="divDetalleCompra"></div>
+
+        <!-- div de dinero e inscripción  -->
+        <div id="inputDineroInscripcion"></div>
+      </div>
+      <footer class="footer"></footer>
     </div>
-    
+
     <!-- aquí con src linkeo con archivo js -->
     <script src="./scripts/scripts.js"></script>
-
-</body>
+  </body>
 </html>

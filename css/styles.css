@@ -1,63 +1,83 @@
-@import url('https://fonts.googleapis.com/css2?family=Roboto&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Roboto&display=swap");
 
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: 'Roboto', sans-serif;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Roboto", sans-serif;
+}
 
-
-
-
-.grid-container{
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr ;
-    grid-template-rows: 1fr 3fr 4fr 1fr;
-    grid-template-areas: 
+.grid-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-rows: 1fr 3fr 4fr 1fr;
+  grid-template-areas:
     "header header header"
     "image-box image-box image-box"
     "left-box center-box right-box"
     "footer footer footer";
 }
 
-h1{
-    text-align: center;
-    color: white;  
-    margin-top: 60px;
-
+.h1 {
+  text-align: center;
+  margin-top: 160px;
+  color: cornflowerblue;
 }
 
-.header{
-grid-area: header; 
-background-color: cornflowerblue;
+.header {
+  grid-area: header;
+  background-color: cornflowerblue;
+}
+
+.image-box {
+  background-image: url(https://www.descubrirelarte.es/wp-content/uploads/2018/09/Deportistas-1930-1931.jpg);
+  grid-area: image-box;
+  background-size: cover;
+}
+
+.left-box {
+  background-color: whitesmoke;
+  grid-area: left-box;
+  padding: 40px;
+}
+
+.center-box {
+  background-color: cornflowerblue;
+  grid-area: center-box;
+}
+
+.right-box {
+  background-color: whitesmoke;
+  grid-area: right-box;
+  padding: 40px;
+}
+
+.footer {
+  grid-area: footer;
+  height: 200px;
+  background-color: #232323;
+}
+
+#infoCursos {
+  text-align: center;
+  margin-top: 100px;
 }
 
 
-.image-box{
-background-image: url(https://www.descubrirelarte.es/wp-content/uploads/2018/09/Deportistas-1930-1931.jpg);
-grid-area: image-box; 
-background-size: cover;
+button {
+  margin-top: 10px;
+}
+
+label {
+  font-weight: bold;
+  
 }
 
 
-.left-box{
-    background-color: whitesmoke;
-    grid-area: left-box;
+input:invalid {
+  box-shadow: 0 0 5px 1px cornflowerblue;
 }
 
-.center-box{
-    background-color: cornflowerblue; 
-    grid-area: center-box;
-} 
-
-.right-box{
-    background-color: whitesmoke;
-    grid-area: right-box;
-}
-
-.footer{
-grid-area: footer;
-height: 200px;
-background-color: #232323;
+input:valid {
+  border: 2px solid black;
 }
